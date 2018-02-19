@@ -1,39 +1,35 @@
-<!DOCTYPE html>
 <html>
- <header>
+ <head>
   <title>Petar's Page</title>
-  <link rel="stylesheet" type="text/css" href="style.css" />
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
- </header>
- <body>
-  <script>
-    var data = {"me":"opa me","this":"opaa this","calc":"calculatoramame"}
-    function article(arg){
-        
-        document.getElementById("article").innerHTML = data[arg]
-}
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+  <script src="script.js"></script>
+ </head>
 
-  </script>
-  <h1>Petar's Page</h1>
+ <body width="100%" height="100%">
   <center>
-   <div id="svgs">
-    <svg height="100%" width="100%">
-     <a href="https://github.com/L37sg0" target="_blank"><circle cx="30%" cy="50" r="40" fill="orange" stroke="white" stroke-width="1%"/>
-	 <text x="25%" y="120" fill="black">About me</text>
-     </a>
-     <a href="https://github.com/L37sg0/l37sg0.github.io" target="_blank"><circle cx="50%" cy="50" r="40" fill="white" stroke="black" stroke-width="1%"/>
-	 <text x="44%" y="120" fill="black">This Project</text>
-     </a>
-     <a href="https://github.com/L37sg0/CalculatorPy" target="_blank"><circle cx="70%" cy="50" r="40" fill="orange" stroke="black" stroke-width="1%"/>
-	 <text x="63%" y="120" fill="white">CalculatorPy</text>
-     </a>
-    </svg>
-   </div>
-   <div id="article">
-	<p>Here you'll find direct links to my Github repositories.</p>
+   <div class="container">
+    <div class="title"><h1>Petar's Page</h1></div>
+    <div class="menu">
+       <svg>
+        <circle id="one" cx="45" cy="50" r="30" stroke-width="3px" stroke="orange" fill="aqua" onclick="click('one')"/>
+       </svg>
+       <svg>
+        <circle id="two" cx="45" cy="50" r="30" stroke-width="3px" stroke="aqua"  fill="black" onclick="click('two')"/>
+       </svg>
+       <svg>
+        <circle id="three" cx="45" cy="50" r="30" stroke-width="3px" stroke="black"  fill="orange" onclick="click('three')"/>
+       </svg>
+       <svg>
+        <circle id="four" cx="45" cy="50" r="30" stroke-width="3px" stroke="aqua"  fill="orange" onclick="click('four')"/>
+       </svg>
+    </div>
+    <div class="article">
+	 <h2 id="some">Some</h2>
+	</div>
+    <div class="bot"></div>
    </div>
   </center>
  </body>
-
 </html>
