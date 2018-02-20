@@ -4,20 +4,34 @@ from tkinter import ttk
 
 # the logic:
 def save():
-    source = open_data()
-    write_data()
-    print(source)
+    doc = 'data.json'
+    src = open_data(doc)
+    vals = get_gui_values()
+    src = write_data(src,vals)
+    #save_changes(src, doc)
+    print(src)
 	
-def open_data():
-    with open('data.json','r') as data:
+def open_data(filename):
+    with open(filename,'r') as data:
         data = json.loads(data.read())
     return data
 
-def write_data():
+def get_gui_values():
     article = str(_art_name.get())
     title = str(_art_title.get())
-    text = str(_art_text_entry.get())
-    print(article, title, text)
+    text = str(_art_text_entry.get('1.0',END))
+    return [article, title, text]
+
+def write_data(arg, values):
+    #print(article, title, text)
+    arg[values[0]] = {}
+    arg[values[0]]['name'] = values[1]
+    arg[values[0]]['text'] = values[2]
+    return arg
+
+def save_changes(source, document):
+    with open(document, 'w') as document:
+        document.write(json.dumps(source))
 
 # the gui:
 if __name__ == '__main__':
@@ -69,4 +83,3 @@ if __name__ == '__main__':
     _art_text_entry.grid(row=1, column=0, sticky=(W, E), padx=5)
 	
 	
-    _root.mainloop()
