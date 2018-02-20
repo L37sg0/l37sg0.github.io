@@ -6,6 +6,9 @@ svg{
 {
     r:35;	
 }
+#txt{
+    text-align:left;
+}
 body{
     width:100%;
     height:100%;

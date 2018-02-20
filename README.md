@@ -6,10 +6,11 @@ passed through- for now...
  
 # New Stuffs:
 - A whole new design!
-- First the design now is using css-display-grid.
+- The design now is using css-display-grid.
 - Added some animation over the buttons.
 - Added some javascript and to be more fun- using XMLHttpRequest.
 - And finally added some JSON to keep all the articles.
+- The GUI- Desktop app is ready it's called 'article-writer.py'
 
 # Next goals:
-- Make an GUI- Desktop app for writing articles in JSON.
+- Write more articles!
