@@ -32,6 +32,10 @@ def write_data(arg, values): # Here we get the data object('arg'), and append to
 def save_changes(source, document): # Here we get the data object('source'), and write it to the data file('document').
     with open(document, 'w') as document:
         document.write(json.dumps(source))
+		
+def choose_image():
+    filename = filedialog.askopenfilename()
+    print(filename)
 
 # the gui:
 if __name__ == '__main__':
@@ -63,12 +67,13 @@ if __name__ == '__main__':
 # Define the Save- button:
     _save_btn = ttk.Button(_art_name_frame, text='Save Article', command=save)
     _save_btn.grid(row=0, column=1, sticky=E, padx=5)
+#############################################################
 	
 # Define the article text frame:
     _art_text_frame = ttk.LabelFrame(_mainframe, padding='5 5 5 5', text='Article:')
     _art_text_frame.grid(row=1,column=0, sticky=(E, W, S, N))
     _art_text_frame.columnconfigure(0, weight=1)
-    #_art_text_frame.rowconfigure(0, weight=1)
+    _art_text_frame.columnconfigure(1, weight=1)
     _art_text_frame.rowconfigure(1, weight=1)
 	
 # Define the article title:
@@ -80,6 +85,14 @@ if __name__ == '__main__':
     _art_text = StringVar()
     _art_text.set('Text Here...')
     _art_text_entry = Text(_art_text_frame,width=40, height=20, bg='white', fg='black')
-    _art_text_entry.grid(row=1, column=0, sticky=(W, E), padx=5)
+    _art_text_entry.grid(row=1, column=0, sticky=(W, E, S, N), padx=5)
+	
+# Define the image choose button:
+    _img_btn = ttk.Button(_art_text_frame, text='Choose image', command=choose_image)
+    _img_btn.grid(row=0, column=1, sticky=E, padx=5)
+	
+# Define the image canvas:
+    _img_canvas = Canvas(_art_text_frame, width=200, height=160, bg='red')
+    _img_canvas.grid(row=1, column=1, sticky=(E, W, S, N), padx=5)
 	
     _root.mainloop()

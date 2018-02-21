@@ -13,4 +13,6 @@ passed through- for now...
 - The GUI- Desktop app is ready it's called 'article-writer.py'
 
 # Next goals:
+- Adding pictures to the articles.
+- Adding img file selct in the article-writer.py.
 - Write more articles!
