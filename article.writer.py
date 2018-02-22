@@ -1,6 +1,8 @@
 import json
+from os import getcwd
+from PIL import Image, ImageTk
 from tkinter import *
-from tkinter import ttk
+from tkinter import ttk, filedialog
 
 # The logic:
 def save():
@@ -32,11 +34,29 @@ def write_data(arg, values): # Here we get the data object('arg'), and append to
 def save_changes(source, document): # Here we get the data object('source'), and write it to the data file('document').
     with open(document, 'w') as document:
         document.write(json.dumps(source))
+####################################################
+
+
 		
 def choose_image():
-    filename = filedialog.askopenfilename()
+    image = get_img_dir()
+    image = create_img_object(image)
+    set_img(image)
+	
+def get_img_dir():
+    pathname = getcwd()+'/images'
+    filename = filedialog.askopenfilename(initialdir=pathname, title='Select image file:', filetypes=(('JPEG files', ('*.jpg','*.jpeg')),('PNG files', '*.png')))
     print(filename)
-
+    return filename
+	
+def create_img_object(arg):
+    photo = Image.open(arg)
+    photo.thumbnail(120,200,Image.ANTIALIAS)
+    return photo
+	
+def set_img(arg):
+    pass
+    
 # the gui:
 if __name__ == '__main__':
 # Define the root window:    
@@ -92,7 +112,7 @@ if __name__ == '__main__':
     _img_btn.grid(row=0, column=1, sticky=E, padx=5)
 	
 # Define the image canvas:
-    _img_canvas = Canvas(_art_text_frame, width=200, height=160, bg='red')
+    _img_canvas = Canvas(_art_text_frame, width=120, height=200, bg='red')
     _img_canvas.grid(row=1, column=1, sticky=(E, W, S, N), padx=5)
 	
     _root.mainloop()
