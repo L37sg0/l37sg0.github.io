@@ -1,6 +1,7 @@
 import json
 from os import getcwd
-from PIL import Image, ImageTk
+import PIL.Image
+import PIL.ImageTk
 from tkinter import *
 from tkinter import ttk, filedialog
 
@@ -50,12 +51,13 @@ def get_img_dir():
     return filename
 	
 def create_img_object(arg):
-    photo = Image.open(arg)
-    photo.thumbnail(120,200,Image.ANTIALIAS)
+    photo = PIL.Image.open(arg)
+    #photo.thumbnail((120,200),PIL.Image.ANTIALIAS)
+    photo = PIL.ImageTk.PhotoImage(photo)
     return photo
 	
 def set_img(arg):
-    pass
+    _img_canvas.itemconfigure(c, image=arg)
     
 # the gui:
 if __name__ == '__main__':
@@ -113,6 +115,8 @@ if __name__ == '__main__':
 	
 # Define the image canvas:
     _img_canvas = Canvas(_art_text_frame, width=120, height=200, bg='red')
-    _img_canvas.grid(row=1, column=1, sticky=(E, W, S, N), padx=5)
+    _img_canvas.grid(row=1, column=1, padx=5)
+    c = _img_canvas.create_image(0, 0,anchor=N )
+    #_img_obj.grid(row=0, column=0)
 	
     _root.mainloop()
