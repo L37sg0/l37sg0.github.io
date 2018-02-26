@@ -55,6 +55,8 @@ class app:
         self._img_btn.grid(row=0, column=1, sticky=E, padx=5)
 
     # Define the image frame:
+        self._img_name = StringVar()
+        self._img_name.set(None)
         self._img_frame = ttk.LabelFrame(self._art_text_frame, padding='5 5 5 5', text='Image:')
         self._img_frame.grid(row=1, column=1, sticky=(E, W, S, N))
         self._img_frame.columnconfigure(0, weight=1)
@@ -103,15 +105,24 @@ class app:
 		
     def choose_image(self):
         self.image = self.get_img_dir()
+        #self.check_img_location(self.image)
         self.image = self.create_img_object(self.image)
         self.set_img(self.image)
 	
     def get_img_dir(self):
         self.pathname = getcwd()+'/images'
-        self.filename = filedialog.askopenfilename(initialdir=self.pathname, title='Select image file:', filetypes=(('JPEG files', ('*.jpg','*.jpeg')),('PNG files', '*.png')))
-        print(self.filename)
-        return self.filename
-	
+        self._img_name.set(filedialog.askopenfilename(initialdir=self.pathname, title='Select image file:', filetypes=(('JPEG files', ('*.jpg','*.jpeg')),('PNG files', '*.png'))))
+        print(self._img_name.get())
+        return self._img_name.get()
+
+    def check_img_location(self, arg):
+        for img in listdir(images):
+            if img in arg:
+                self._img_name.set('images/'+img)
+                marker = True
+            else:
+                None			
+
     def create_img_object(self, arg):
         self.arg = arg
         self.photo = PIL.Image.open(self.arg)
