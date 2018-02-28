@@ -1,5 +1,6 @@
 import json
-from os import getcwd
+import shutil
+from os import getcwd, listdir
 import PIL.Image
 import PIL.ImageTk
 from tkinter import *
@@ -85,7 +86,8 @@ class app:
         self.article = str(self._art_name.get())
         self.title = str(self._art_title.get())
         self.text = str(self._art_text_entry.get('1.0',END))
-        return [self.article, self.title, self.text]
+        self.image = self._img_name.get()
+        return [self.article, self.title, self.text, self.image]
 
     def write_data(self, arg, values): # Here we get the data object('arg'), and append to it the new values.
         #print(article, title, text)
@@ -94,6 +96,7 @@ class app:
         self.arg[self.values[0]] = {}
         self.arg[self.values[0]]['name'] = self.values[1]
         self.arg[self.values[0]]['text'] = self.values[2]
+        self.arg[self.values[0]]['image'] = self.values[3]
         return arg
 
     def save_changes(self, source, document): # Here we get the data object('source'), and write it to the data file('document').
@@ -104,9 +107,9 @@ class app:
 ####################################################
 		
     def choose_image(self):
-        self.image = self.get_img_dir()
-        #self.check_img_location(self.image)
-        self.image = self.create_img_object(self.image)
+        self.image = self.get_img_dir() # Get the choosen image location 
+        self.check_img_location(self.image) # Check if image is in 'images' folder, if it's not copyes it to 'images'
+        self.image = self.create_img_object(self._img_name.get())
         self.set_img(self.image)
 	
     def get_img_dir(self):
@@ -114,15 +117,17 @@ class app:
         self._img_name.set(filedialog.askopenfilename(initialdir=self.pathname, title='Select image file:', filetypes=(('JPEG files', ('*.jpg','*.jpeg')),('PNG files', '*.png'))))
         print(self._img_name.get())
         return self._img_name.get()
-
+###########
     def check_img_location(self, arg):
-        for img in listdir(images):
-            if img in arg:
-                self._img_name.set('images/'+img)
-                marker = True
+        self.arg = arg
+        self.directory = getcwd()+'/images'
+        for img in listdir(self.directory):
+            if img in self.arg:
+                self._img_name.set(self.directory+img)
             else:
-                None			
-
+                shutil.copy(img, self.directory, follow_symlink=True)
+                check_img_location(self.arg)
+##############
     def create_img_object(self, arg):
         self.arg = arg
         self.photo = PIL.Image.open(self.arg)
