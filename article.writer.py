@@ -1,5 +1,6 @@
 import json
 import shutil
+import ntpath
 from os import getcwd, listdir
 import PIL.Image
 import PIL.ImageTk
@@ -107,26 +108,32 @@ class app:
 ####################################################
 		
     def choose_image(self):
-        self.image = self.get_img_dir() # Get the choosen image location 
-        self.check_img_location(self.image) # Check if image is in 'images' folder, if it's not copyes it to 'images'
-        self.image = self.create_img_object(self._img_name.get())
+        self.dir = self.get_img_dir()		# Get the choosen image location 
+        self.image = self.path_leaf(self.dir)
+        # self.image = self.check_img_location(self.image) # Check if image is in 'images' folder, if it's not copyes it to 'images'
+        self.image = self.create_img_object(self.image)
         self.set_img(self.image)
 	
     def get_img_dir(self):
         self.pathname = getcwd()+'/images'
-        self._img_name.set(filedialog.askopenfilename(initialdir=self.pathname, title='Select image file:', filetypes=(('JPEG files', ('*.jpg','*.jpeg')),('PNG files', '*.png'))))
-        print(self._img_name.get())
-        return self._img_name.get()
+        self.filename = (filedialog.askopenfilename(initialdir=self.pathname, title='Select image file:', filetypes=(('JPEG files', ('*.jpg','*.jpeg')),('PNG files', '*.png'))))
+        print(self.filename)
+        return self.filename
+		
+    def path_leaf(self, path):
+        self.path = path
+        self.head, self.tail = ntpath.split(self.path)
+        return self.tail or ntpath.basename(self.head)
 ###########
-    def check_img_location(self, arg):
-        self.arg = arg
-        self.directory = getcwd()+'/images'
-        for img in listdir(self.directory):
-            if img in self.arg:
-                self._img_name.set(self.directory+img)
-            else:
-                shutil.copy(img, self.directory, follow_symlink=True)
-                check_img_location(self.arg)
+
+    def check_img_location(self, file, or_dir ):
+        self.file = file
+        self.or_dir = or_dir
+        self.local_dir = getcwd()+'/images'
+        if file not in listdir(self.local_dir):
+            shutil.copy(src=self.or_dir, dst=self.local_dir) 
+        
+                				
 ##############
     def create_img_object(self, arg):
         self.arg = arg
@@ -138,6 +145,7 @@ class app:
     def set_img(self, arg):
         self.arg = arg
         self._img_label.configure(image=self.arg)
+        self._img_name.set(self.arg)
 
 
 def main():    
