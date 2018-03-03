@@ -110,14 +110,15 @@ class app:
     def choose_image(self):
         self.dir = self.get_img_dir()		# Get the choosen image location 
         self.image = self.path_leaf(self.dir)
-        # self.image = self.check_img_location(self.image) # Check if image is in 'images' folder, if it's not copyes it to 'images'
+        self.image = self.check_img_location(self.image, self.dir) # Check if image is in 'images' folder, if it's not copyes it to 'images'
         self.image = self.create_img_object(self.image)
         self.set_img(self.image)
+        print('\n - from the check:\n',str(self._img_name.get()))
 	
     def get_img_dir(self):
         self.pathname = getcwd()+'/images'
         self.filename = (filedialog.askopenfilename(initialdir=self.pathname, title='Select image file:', filetypes=(('JPEG files', ('*.jpg','*.jpeg')),('PNG files', '*.png'))))
-        print(self.filename)
+        #print(self.filename)
         return self.filename
 		
     def path_leaf(self, path):
@@ -132,7 +133,10 @@ class app:
         self.local_dir = getcwd()+'/images'
         if file not in listdir(self.local_dir):
             shutil.copy(src=self.or_dir, dst=self.local_dir) 
-        
+        else:
+            None
+        self._img_name.set('images/'+file)
+        return str(self._img_name.get())		
                 				
 ##############
     def create_img_object(self, arg):
@@ -145,7 +149,7 @@ class app:
     def set_img(self, arg):
         self.arg = arg
         self._img_label.configure(image=self.arg)
-        self._img_name.set(self.arg)
+        #self._img_name.set(self.arg)
 
 
 def main():    
