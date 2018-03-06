@@ -1,7 +1,3 @@
-var text = localStorage.getItem("data");
-var obj = JSON.parse(text);
-
-
 function click(arg){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
@@ -9,7 +5,6 @@ function click(arg){
             data = JSON.parse(this.responseText);
             document.getElementById("tit").innerHTML = data[arg]["name"];
             document.getElementById("txt").innerHTML = data[arg]["text"];
-            //document.getElementById("img").innerHTML = data[arg]["image"];
             document.getElementById("image").setAttribute("src", data[arg]["image"]);
         }
     };
