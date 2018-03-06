@@ -12,4 +12,4 @@ function set_article(arg){
     xhttp.send();
 	
 }
-set_article('four');
+//set_article('four');
