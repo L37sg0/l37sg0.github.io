@@ -38,6 +38,7 @@ class app:
         self._art_text_frame.grid(row=1,column=0, sticky=(E, W, S, N))
         self._art_text_frame.columnconfigure(0, weight=1)
         self._art_text_frame.columnconfigure(1, weight=1)
+        self._art_text_frame.columnconfigure(2, weight=1)
         self._art_text_frame.rowconfigure(1, weight=1)
 
     # Define the article title:
@@ -66,7 +67,20 @@ class app:
 
     # Define the image canvas:
         self._img_label = ttk.Label(self._img_frame, text='image here', image=None)
-        self._img_label.grid(row=0, column=0, padx=5, sticky=(E, W, S, N))
+        self._img_label.grid(row=0, column=0, padx=5, sticky=(E, W, S, N))	
+
+    # Define open article button:
+        self._open_btn = ttk.Button(self._art_text_frame, text='Open', command=self.open_article)
+        self._open_btn.grid(row=0, column=2, sticky=E, padx=5)
+		
+    # Define the select article listbox:
+        self.list_articles = self.open_data('data.json')
+        self.list_articles = [key for key in self.list_articles]
+        print(self.list_articles)
+        self._select_art = Listbox(self._art_text_frame, width=20, listvariable=self.list_articles)
+        self._select_art.grid(row=1, column=2, sticky=(E, W, S, N))
+        [self._select_art.insert(END, item) for item in self.list_articles]
+
 
     # The logic:
     def save(self):
@@ -157,7 +171,7 @@ def main():
     _root.title('Article Writer')
     _root.columnconfigure(0, weight=1)
     _root.rowconfigure(0, weight=1)
-    _root.geometry('505x360')
+    _root.geometry('600x360')
     app(_root)
     _root.mainloop()
 
