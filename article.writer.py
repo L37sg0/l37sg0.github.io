@@ -165,7 +165,12 @@ class app:
         self._img_label.configure(image=self.arg)
         #self._img_name.set(self.arg)
 
-
+    def listbox_operations(self, lb):
+        self.data = self.open_data('data.json')
+        self.list_items = [key for key in self.data]
+        self.lb = lb
+        [self.lb.insert(i,k) for i,k in self.list_items]
+        lb.bind("<<ListboxSelect>>", lbvar.set(curse))
 def main():    
     _root = Tk()
     _root.title('Article Writer')
