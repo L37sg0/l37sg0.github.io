@@ -22,11 +22,11 @@ body{
 .avatar:hover{
     width:60px;
     height:60px;
-    border:3px solid orange;
+    border:3px solid lightgreen;
 }
 
 .title{
-    color:orange;
+    color:lightgreen;
     font-size:90%;
     grid-area:header;
     self-align:stretch;
@@ -44,7 +44,7 @@ body{
     grid-area:article;
     self-justify:stretch;
     self-align:stretch;
-    background-color:orange;
+    background-color:lightgreen;
     color:black;
     font-size:200%;
     text-align: left;
