@@ -1,0 +1,45 @@
+<! doctype html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Dices Game</title>
+	<style>
+		body{
+		background-image: url("img/dices.jpg");
+		background-size: cover; 
+		background-repeat: no-repeat;
+		background-position: center center; 
+		}
+		#canvas{
+		display: block;
+		width: 100vw;
+		height: 100vh;
+		max-width: 720;
+		max-height: 480;
+		background-color: rgba(0,255,0,0.4);
+		border: 2px solid black;
+		margin: auto;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		}
+		#button{
+		background: linear-gradient(black, grey);
+		border: 1px solid grey;
+		margin: auto;
+		position: absolute;
+		top: 300;
+		bottom: 1;
+		left: 0;
+		right: 0;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="500" height="380"></canvas>
+	<canvas id="button" width="80" height="40"></canvas>
+	<script src="js/dices.js"></script>
+</html>
