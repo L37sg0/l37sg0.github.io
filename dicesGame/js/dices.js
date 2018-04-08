@@ -40,7 +40,7 @@ function Buton() {
 var dieOne = 6;
 var dieTwo = 6;
 var diceRoll = new Audio();// Plays a rolling dices sound.
-diceRoll.src = "sounds/dice.wav";
+diceRoll.src = "http://cd.textfiles.com/itcontinues/WIN/YTB22/MANYDICE.WAV";
 
 var result = 0;
 var prev = 0;
