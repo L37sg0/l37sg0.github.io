@@ -1,0 +1,87 @@
+/*Define single-element styles:*/
+
+body{
+    background-color:whitesmoke;
+    color:whitesmoke;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: whitesmoke;
+    display: inline;
+}
+li{
+    float: center;
+    display: inline;
+    height: 40px;
+}
+li a{
+    color: dodgerblue;
+    text-align: center;
+    padding: 6px;
+    text-decoration: none;
+}
+li a:hover{
+    background-color: cornflowerblue;
+    color: whitesmoke;
+}
+
+th, td{
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: whitesmoke;
+    color: dodgerblue;
+}
+
+/*sDefine container style:*/
+.item-a{
+    self-align:stretch;
+    self-justify:stretch;
+    grid-area:header;
+    background-color:dodgerblue;
+}
+.item-b{
+    self-align:stretch;
+    self-justify:stretch;
+    grid-area:main;
+    background-color:dodgerblue;
+    border: 1px solid dodgerblue;
+    overflow: scroll;
+}
+.item-c{
+    self-align:stretch;
+    self-justify:stretch;
+    grid-area:sidebar;
+    background-color:dodgerblue;
+    border: 1px solid dodgerblue;
+    overflow: scroll;
+}
+.item-d{
+    self-align:stretch;
+    self-justify:stretch;
+    grid-area:footer;
+    background-color:dodgerblue;
+    border: 1px solid white;
+}
+
+.container{
+    display: inline-grid;
+    //width: 80vw;
+    //margin-right:10px;
+    grid-template-columns: 23vw 23vw 23vw 23vw;
+    grid-template-rows:30vh 40vh 30vh;
+    grid-column-gap:10px;
+    grid-row-gap:10px;
+    grid-template-areas:
+        "header header header header"
+        "main main sidebar sidebar"
+        "footer footer footer footer";
+}

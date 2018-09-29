@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Сметки</title>
+    <script src="https://connect.facebook.net/en_US/fbinstant.6.2.js"></script>
+    <script src="smetki.js"></script>
+</head>
+
+<body width="100%" height="100%">
+    <center>
+        <div class="container">
+            <div class="item-a">
+                <h3>Сметки- Вашият личен финансов организатор</h3>
+                <h4>Моля попълнете информация за приходи и разходи:</h4>
+            </div>
+            <div class="item-b">
+                <h4>Приходи:</h4>
+                <form onsubmit="newIncome('income')">
+                    <input value="Приход" id="incomeName">
+                    <input type="number" value="0" id="incomePrice" min="0" required>
+                    <input type="submit" value="Добави">
+                </form>
+                <table id="income" ></table>
+            </div>
+            <div class="item-c">
+                <h4>Разходи:</h4>
+                <form onsubmit="newCost('cost')">
+                    <input value="Разход" id="costName">
+                    <input type="number" value="0" id="costPrice" min="0" required>
+                    <input type="submit" value="Добави">
+                </form>
+                <table id="cost" ></table>
+            
+            </div>
+            <div class="item-d">
+                <br>
+                <form onsubmit="mathBills()"><input type="submit" value="Резултат:"></form>
+                <br>
+                <table id="bills"></table>
+            </div>
+
+        </div>
+    </center>
+    <script src="smetki.js"></script>
+</body>
+</html>
