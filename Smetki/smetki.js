@@ -1,37 +1,6 @@
-//Initialize fb sdk
-window.fbAsyncInit = function() {
-    FB.init({
-        appId      : '530624560719102',
-        xfbml      : true,
-        version    : 'v3.1'
-    });
-    FB.AppEvents.logPageView();
-};
-
-(function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
-FBInstant.initializeAsync().then(function()
-{
-    console.log("app initialized");
-});
-
-FBInstant.startGameAsync().then(function()
-{
-    console.log("app started");
-});
-//Loading animation for the app
-for (var i=0; i<100; i++)
-{  
-    var progress = i+1;
-    FBInstant.setLoadingProgress(progress);
-}
-
+document.getElementById("formIncome").addEventListener('submit', function(event){event.preventDefault();});
+document.getElementById("formCost").addEventListener('submit', function(event){event.preventDefault();});
+document.getElementById("formBills").addEventListener('submit', function(event){event.preventDefault();});
 function newIncome(element)
 {
     var table = document.getElementById(element);
